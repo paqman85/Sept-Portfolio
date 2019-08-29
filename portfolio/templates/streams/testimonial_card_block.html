@@ -1,0 +1,29 @@
+
+{% load wagtailimages_tags %}
+
+
+<div class="container">
+     <h2 class="text-center"> {{self.title }}</h2>
+        <div class="card-deck">
+            {% for testimonial in self.testimonials %}
+                {% image testimonial.image fill-300x200-c70 as img %}
+                <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                    <img src="{{ img.url }}" class="card-img-top" alt="{{ img.alt }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ testimonial.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ testimonial.company}}</h6>
+                        <p class="card-text">{{ testimonial.text }}.</p>
+                        {% if testimonial.button_page %}
+                        <a href ="{{ testimonial.button_page.url }}" class"btn btn-primary">
+                        More
+                        </a>
+                        {% elif card.button_url %}
+                        <a href ="{{ testimonial.button_url}}" class"btn btn-primary">
+                        More
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+</div>
